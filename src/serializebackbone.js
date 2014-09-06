@@ -10,9 +10,13 @@
 
   var reducer = function(memo, value) {
     if(typeof memo[value.name] === 'undefined') {
-      memo[value.name] = [];
+      memo[value.name] = value.value;
+    } else if(!Array.isArray(memo[value.name])) {
+      memo[value.name] = [memo[value.name]];
+    } else {
+      memo[value.name].push(value.value);
     }
-    memo[value.name].push(value.value);
+    
     return memo;
   };
   
