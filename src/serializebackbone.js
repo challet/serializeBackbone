@@ -8,15 +8,16 @@
 
 (function ($) {
 
-  var reducer = function(memo, value, index, list) {
-    if(typeof memo[value.name] == 'undefined')
-      memo[value.name] = new Array()
-    memo[value.name].push(value.value)
-    return memo
-  }
+  var reducer = function(memo, value) {
+    if(typeof memo[value.name] === 'undefined') {
+      memo[value.name] = [];
+    }
+    memo[value.name].push(value.value);
+    return memo;
+  };
   
   $.fn.serializeBackbone = function() {
-    return _($(this).serializeArray()).reduce(reducer, {})
-  }
+    return _($(this).serializeArray()).reduce(reducer, {});
+  };
   
 }(jQuery));
