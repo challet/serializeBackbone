@@ -20,8 +20,19 @@
     return memo;
   };
   
-  $.fn.serializeBackbone = function() {
-    return _($(this).serializeArray()).reduce(reducer, {});
+  $.fn.serializeBackbone = function(options) {
+    var serialized = _($(this).serializeArray()).reduce(reducer, {});
+    if(options.array_as_string) {
+      serialized = _(serialized).map(function(value) { 
+        if(Array.isArray(value)) {
+          return value.join(',');
+        } else {
+          return value;
+        }
+      });
+    } else {
+      return serialized;
+    }
   };
   
 }(jQuery));
