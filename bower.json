@@ -2,7 +2,7 @@
   "name": "serializebackbone",
   "version": "",
   "dependencies": {
-    "underscore": "~1.5.2"
+    "underscore": "~1.7.0"
   },
   "devDependencies": {
     "qunit": "~1.12.0",
