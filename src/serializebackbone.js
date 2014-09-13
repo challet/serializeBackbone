@@ -13,6 +13,7 @@
       memo[value.name] = value.value;
     } else if(!Array.isArray(memo[value.name])) {
       memo[value.name] = [memo[value.name]];
+      memo[value.name].push(value.value);
     } else {
       memo[value.name].push(value.value);
     }
@@ -23,16 +24,14 @@
   $.fn.serializeBackbone = function(options) {
     var serialized = _($(this).serializeArray()).reduce(reducer, {});
     if(options.array_as_string) {
-      serialized = _(serialized).map(function(value) { 
+      for(name in serialized) {
+        var value = serialized[name]
         if(Array.isArray(value)) {
-          return value.join(',');
-        } else {
-          return value;
+          serialized[name] = value.join(',') 
         }
-      });
-    } else {
-      return serialized;
+      }
     }
+    return serialized;
   };
   
 }(jQuery));
