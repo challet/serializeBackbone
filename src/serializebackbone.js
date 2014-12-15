@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  */
 
-(function ($) {
+(function ($, _) {
 
   var reducer = function(memo, value) {
     if(typeof memo[value.name] === 'undefined') {
@@ -25,13 +25,13 @@
     var serialized = _($(this).serializeArray()).reduce(reducer, {});
     if(options.array_as_string) {
       for(name in serialized) {
-        var value = serialized[name]
+        var value = serialized[name];
         if(Array.isArray(value)) {
-          serialized[name] = value.join(',') 
+          serialized[name] = value.join(',');
         }
       }
     }
     return serialized;
   };
   
-}(jQuery));
+}(jQuery, _));
